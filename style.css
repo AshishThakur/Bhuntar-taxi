@@ -1,0 +1,236 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Open Sans', Arial, sans-serif;
+  color:antiquewhite;
+  background:#000000;
+}
+
+/* container */
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:0 15px;
+}
+
+/* row */
+.row{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* header */
+header{
+  padding:20px 0;
+  position:sticky;
+  top:0;
+  background:#000;
+  border-bottom:1px solid goldenrod;
+  z-index:1000;
+}
+
+.logo{
+  font-weight:600;
+  font-size:24px;
+}
+
+.golden{
+  color:goldenrod;
+}
+
+/* navbar */
+.menu ul{
+  list-style:none;
+}
+
+.menu ul li a{
+  text-decoration:none;
+  color:goldenrod;
+  border:1px solid goldenrod;
+  padding:12px 20px;
+  transition:0.3s;
+}
+
+.menu ul li a:hover{
+  background:goldenrod;
+  color:#fff;
+}
+
+/* hamburger */
+.hamburger{
+  display:none;
+}
+
+.hamburger a{
+  text-decoration:none;
+  color:goldenrod;
+  border:1px solid goldenrod;
+  padding:10px 15px;
+}
+
+/* hero */
+.main-content{
+  display:flex;
+  align-items:center;
+  gap:30px;
+  padding:80px 0;
+}
+
+.col-6{
+  width:50%;
+}
+
+.text{
+  line-height:2.2rem;
+}
+
+.text h1{
+  font-size:32px;
+}
+
+.image img{
+  width:100%;
+  border-radius:10px;
+}
+
+/* button */
+.callbtn{
+  margin-top:20px;
+}
+
+.callbtn a{
+  text-decoration:none;
+  color:goldenrod;
+  border:1px solid goldenrod;
+  padding:12px 20px;
+  display:inline-block;
+  transition:0.3s;
+}
+
+.callbtn a:hover{
+  background:goldenrod;
+  color:#fff;
+}
+
+/* =====================
+   SEO CONTENT SECTION
+===================== */
+.seo-content{
+  padding:80px 20px;
+  text-align:center;
+}
+
+.seo-content h2{
+  color:goldenrod;
+  font-size:28px;
+  margin-bottom:20px;
+}
+
+.seo-content p{
+  max-width:800px;
+  margin:0 auto 20px;
+  line-height:1.8rem;
+  font-size:16px;
+}
+
+/* =====================
+   ABOUT SECTION
+===================== */
+.About-content{
+  text-align:center;
+  padding:100px 0;
+}
+
+.About-content h2{
+  font-size:32px;
+}
+
+.About-content h3{
+  margin-bottom:30px;
+}
+
+/* cards */
+.grid-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;
+}
+
+.card{
+  border:1px solid goldenrod;
+  padding:20px;
+  border-radius:8px;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+}
+
+.card h4{
+  margin:10px 0;
+}
+
+.fa-solid{
+  font-size:28px;
+  color:goldenrod;
+}
+
+/* =====================
+   FOOTER
+===================== */
+footer{
+  background:#000;
+  text-align:center;
+  padding:20px;
+  border-top:1px solid goldenrod;
+  font-size:14px;
+}
+
+/* =====================
+   MOBILE RESPONSIVE
+===================== */
+@media screen and (max-width:768px){
+
+  .main-content{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .col-6{
+    width:100%;
+  }
+
+  .text h1{
+    font-size:26px;
+  }
+}
+
+/* small devices */
+@media screen and (max-width:480px){
+
+  .hamburger{
+    display:block;
+  }
+
+  .menu{
+    display:none;
+  }
+
+  .logo{
+    font-size:20px;
+  }
+
+  .seo-content{
+    padding:60px 15px;
+  }
+
+  .seo-content h2{
+    font-size:24px;
+  }
+}
