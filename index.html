@@ -26,12 +26,29 @@
   "@type": "TaxiService",
   "name": "Bhuntar Taxi Service",
   "telephone": "+919805344310",
-  "areaServed": "Bhuntar, Kullu, Manali, Kasol",
+  "image": "https://ashishthakur.github.io/Bhuntar-taxi/images/bhuntar-to-manali-taxi.jpg",
+  "priceRange": "₹₹",
+  "description": "Professional taxi service from Bhuntar Airport to Kullu, Kasol, and Manali.",
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": "Airport Road, Bhuntar",
     "addressLocality": "Bhuntar",
     "addressRegion": "Himachal Pradesh",
-    "addressCountry": "India"
+    "postalCode": "175125",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "31.8763",
+    "longitude": "77.1541"
+  },
+  "areaServed": ["Bhuntar", "Kullu", "Manali", "Kasol"],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "bestRating": "5",
+    "worstRating": "1",
+    "ratingCount": "50"
   }
 }
 </script>
@@ -39,19 +56,16 @@
 </head>
 
 <body>
-<!-- header -->
- <header>
+<header>
   <div class="container">
     <div class="row">
       <div class="logo">
         BHUNTAR TAXI <span class="golden">SERVICE</span>
       </div>
-      <!-- hamburger -->
       <div class="hamburger">
         <i class="fas fa-solid fa-bars"></i>
       </div>
-      <!-- navbar -->
-       <nav class="menu">
+      <nav class="menu">
         <ul>
           <li><a href="#">Home</a></li>
           <li><a href="#about">About</a></li>
@@ -63,8 +77,7 @@
   </div>
  </header>
 
- <!-- home section -->
-  <section id="home">
+ <section id="home">
     <div class="container">
       <div class="main-content">
         <div class="col-6">
@@ -90,7 +103,6 @@
     </div>
   </section>
 
-  <!-- About section -->
   <section id="about">
   <div class="container">
     <div class="About-content">
@@ -141,8 +153,7 @@
   </div>
 </section>
 
-<!-- service -->
- <div id="service">
+<div id="service">
   <div class="container">
     <div class="service-content">
       <h2><span class="golden">Frequently Asked Questions</span></h2>
@@ -237,8 +248,7 @@
   </div>
  </div>
 
- <!-- footer -->
-  <footer>
+ <footer>
     <div class="container">
       <div class="footer-content">
         <div class="footer-text">
@@ -259,6 +269,6 @@
 
   </footer>
 
- <script src="index.js"></script>
+ <script src="./index.js" defer></script>
 </body>
 </html>
