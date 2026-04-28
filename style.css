@@ -4,6 +4,18 @@
   box-sizing: border-box;
 }
 
+html{
+  scroll-behavior: smooth;
+}
+header{
+  position:fixed;
+  width:100%;
+  top:0;
+  left:0;
+  background:#000;
+  border-bottom:1px solid goldenrod
+}
+
 body{
   font-family: 'Open Sans', Arial, sans-serif;
   color:antiquewhite;
@@ -17,30 +29,29 @@ body{
   padding:0 15px;
 }
 
-/* row */
 .row{
   display:flex;
   justify-content: space-between;
-  align-items: center;
+  align-items:center;
+}
+
+.hamburger{
+  display:none;
+}
+
+/* logo */
+.logo{
+  font-size:20px;
+  font-weight:bold;
+}
+
+.golden{
+  color:goldenrod
 }
 
 /* header */
 header{
   padding:20px 0;
-  position:sticky;
-  top:0;
-  background:#000;
-  border-bottom:1px solid goldenrod;
-  z-index:1000;
-}
-
-.logo{
-  font-weight:600;
-  font-size:24px;
-}
-
-.golden{
-  color:goldenrod;
 }
 
 /* navbar */
@@ -48,37 +59,40 @@ header{
   list-style:none;
 }
 
+.menu ul li{
+  display:inline;
+  width:200px;
+  padding:20px;
+  cursor:pointer;
+}
+
 .menu ul li a{
   text-decoration:none;
-  color:goldenrod;
-  border:1px solid goldenrod;
-  padding:12px 20px;
-  transition:0.3s;
-}
-
-.menu ul li a:hover{
-  background:goldenrod;
   color:#fff;
+  padding:0 15px;
 }
 
-/* hamburger */
-.hamburger{
-  display:none;
-}
-
-.hamburger a{
-  text-decoration:none;
-  color:goldenrod;
+.menu ul li:hover{
+  background: rgba(255, 215, 0, 0.2);
   border:1px solid goldenrod;
-  padding:10px 15px;
+  transition: 0.2s;
+  border-radius:5px;
 }
 
-/* hero */
+.menu.active {
+  display: block;
+}
+
+.hamburger i {
+  transition: 0.3s;
+}
+
+/* home section */
 .main-content{
+  padding:100px 0;
   display:flex;
-  align-items:center;
-  gap:30px;
-  padding:80px 0;
+  justify-content: center;
+  align-items:Center
 }
 
 .col-6{
@@ -86,151 +100,241 @@ header{
 }
 
 .text{
-  line-height:2.2rem;
+  line-height:2.5rem;
+  padding-right:20px;
 }
 
-.text h1{
-  font-size:32px;
+.callbtn a
+{
+  background:goldenrod;
+  color:#fff;
+  text-decoration:none;
+  padding:10px 25px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.callbtn{
+  margin:20px 0;
+}
+
+.callbtn:hover a{
+  border:2px solid goldenrod;
+  color:goldenrod;
+  background:#fff;
+  font-weight:bold;
 }
 
 .image img{
   width:100%;
-  border-radius:10px;
 }
 
-/* button */
-.callbtn{
-  margin-top:20px;
-}
 
-.callbtn a{
-  text-decoration:none;
-  color:goldenrod;
-  border:1px solid goldenrod;
-  padding:12px 20px;
-  display:inline-block;
-  transition:0.3s;
+/* About section */
+#about{
+  border-top:1px solid goldenrod
+  
 }
-
-.callbtn a:hover{
-  background:goldenrod;
-  color:#fff;
-}
-
-/* =====================
-   SEO CONTENT SECTION
-===================== */
-.seo-content{
-  padding:80px 20px;
-  text-align:center;
-}
-
-.seo-content h2{
-  color:goldenrod;
-  font-size:28px;
-  margin-bottom:20px;
-}
-
-.seo-content p{
-  max-width:800px;
-  margin:0 auto 20px;
-  line-height:1.8rem;
-  font-size:16px;
-}
-
-/* =====================
-   ABOUT SECTION
-===================== */
 .About-content{
-  text-align:center;
-  padding:100px 0;
+  padding:60px 0;
+  margin:auto;
+  text-align:Center;
 }
 
 .About-content h2{
-  font-size:32px;
+  font-size:45px;
 }
 
 .About-content h3{
-  margin-bottom:30px;
+  margin:10px 0;
 }
 
-/* cards */
 .grid-container{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap:20px;
+  margin:50px 0;
 }
 
 .card{
   border:1px solid goldenrod;
-  padding:20px;
-  border-radius:8px;
-  transition:0.3s;
+  padding:50px 0;
+  line-height:2rem
 }
 
-.card:hover{
-  transform:translateY(-5px);
+.card:hover {
+    box-shadow: 
+        0 4px 10px rgba(218,165,32,0.6),
+        0 0 20px rgba(218,165,32,0.4);
+        background: rgba(255, 215, 0, 0.2);
+        transition:0.2s
 }
 
-.card h4{
-  margin:10px 0;
-}
-
-.fa-solid{
-  font-size:28px;
+.about-icons{
   color:goldenrod;
+  font-size:25px;
 }
 
-/* =====================
-   FOOTER
-===================== */
-footer{
-  background:#000;
-  text-align:center;
-  padding:20px;
+/* service content */
+
+#service{
   border-top:1px solid goldenrod;
-  font-size:14px;
+  border-bottom:1px solid goldenrod
+}
+.service-content{
+  margin:auto;
+  text-align:Center;
 }
 
-/* =====================
-   MOBILE RESPONSIVE
-===================== */
+.service-content h2{
+  font-size:35px;
+}
+
+/* faq */
+.question-container{
+  margin:30px 0;
+}
+
+.question{
+  max-width:700px;
+  margin:auto;
+}
+
+.question-box{
+  margin:15px 0;
+}
+.question-row{
+  border:1px solid goldenrod;
+  padding:18px 20px;
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+}
+
+.answer{
+  border:1px solid goldenrod;
+  display:none;
+  padding:25px 15px;
+  text-align:left;
+   max-width:700px;
+   margin:auto;
+   background: rgba(255, 215, 0, 0.2);
+}
+
+.answer {
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.question-box.active .answer {
+    max-height: 200px; /* adjust if needed */
+}
+
+.question-icon i {
+    transition: transform 0.3s ease;
+}
+
+.question-box.active .question-icon i {
+    transform: rotate(45deg);
+}
+
+.question-text{
+  text-transform: uppercase;
+}
+
+.service-content{
+  padding:50px 0;
+}
+
+/* footer */
+footer{
+  padding:50px 0;
+  border-top:1px solid goldenrod
+}
+
+.footer-content{
+  display:flex;
+  justify-content: space-between;
+}
+footer h4{
+  text-transform: uppercase;
+}
+.call-btn {
+    background: #007bff;
+    color: white;
+    font-size: 24px;
+    padding: 12px 15px;
+    border-radius: 50%;
+    text-align: center;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: 0.3s ease;
+}
+
+.call-btn:hover {
+    transform: scale(1.1);
+    background: #0056b3;
+}
+
 @media screen and (max-width:768px){
-
-  .main-content{
-    flex-direction:column;
-    text-align:center;
+  .row{
+    position:relative;
   }
-
-  .col-6{
-    width:100%;
-  }
-
-  .text h1{
-    font-size:26px;
-  }
-}
-
-/* small devices */
-@media screen and (max-width:480px){
 
   .hamburger{
     display:block;
   }
 
   .menu{
+    position:absolute;
+    top:45px;
+    left:0;
+    width:100%;
+    border:1px solid goldenrod;
+    background:#000;
+    margin:auto;
+    text-align:Center;
     display:none;
   }
 
-  .logo{
-    font-size:20px;
+  .menu ul{
+    width:100%;
   }
 
-  .seo-content{
-    padding:60px 15px;
+  .menu ul li{
+    display:block;
+    width:100%;
+    border:1px solid goldenrod
   }
 
-  .seo-content h2{
-    font-size:24px;
+  
+  
+}
+
+
+@media screen and (max-width:540px){
+  .main-content{
+    flex-direction:column;
+    padding:60px 0;
+  }
+
+.main-content h1{
+  font-size:25px;
+}
+
+.text{
+padding:0
+}
+
+  .col-6{
+    width:100%
+  }
+
+  .About-content h2{
+    font-size:30px;
+  }
+
+  .service-content h2{
+    font-size:30px;
   }
 }
