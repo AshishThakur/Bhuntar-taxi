@@ -1,50 +1,45 @@
+// MOBILE MENU
+
 const hamburger = document.querySelector(".hamburger");
 const menu = document.querySelector(".menu");
-const icon = document.querySelector(".hamburger i");
+const hamburgerIcon = document.querySelector(".hamburger i");
 
-/* =========================
-   MOBILE MENU TOGGLE
-========================= */
 hamburger.addEventListener("click", () => {
+
   menu.classList.toggle("active");
 
-  icon.classList.toggle("fa-bars");
-  icon.classList.toggle("fa-xmark");
+  hamburgerIcon.classList.toggle("fa-bars");
+  hamburgerIcon.classList.toggle("fa-xmark");
+
 });
 
-/* =========================
-   CLOSE MENU AFTER CLICKING LINK
-========================= */
-document.querySelectorAll(".menu ul li a").forEach(link => {
+// CLOSE MENU ON CLICK
+
+document.querySelectorAll(".menu a").forEach(link => {
+
   link.addEventListener("click", () => {
+
     menu.classList.remove("active");
 
-    icon.classList.add("fa-bars");
-    icon.classList.remove("fa-xmark");
+    hamburgerIcon.classList.add("fa-bars");
+    hamburgerIcon.classList.remove("fa-xmark");
+
   });
+
 });
 
-/* =========================
-   FAQ ACCORDION
-========================= */
-document.querySelectorAll(".question-box").forEach((box) => {
-  const question = box.querySelector(".question");
-  const answer = box.querySelector(".answer");
-  const icon = box.querySelector(".question-icon i");
+// FAQ ACCORDION
 
-  // hide all answers initially
-  answer.style.display = "none";
+const faqBoxes = document.querySelectorAll(".faq-box");
+
+faqBoxes.forEach(box => {
+
+  const question = box.querySelector(".faq-question");
 
   question.addEventListener("click", () => {
-    
-    // toggle answer
-    if (answer.style.display === "none") {
-      answer.style.display = "block";
-      icon.style.transform = "rotate(45deg)"; // + to ×
-    } else {
-      answer.style.display = "none";
-      icon.style.transform = "rotate(0deg)";
-    }
+
+    box.classList.toggle("active");
 
   });
+
 });
