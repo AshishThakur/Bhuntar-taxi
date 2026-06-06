@@ -1,32 +1,19 @@
-// MOBILE MENU
-
 const hamburger = document.querySelector(".hamburger");
 const menu = document.querySelector(".menu");
-const hamburgerIcon = document.querySelector(".hamburger i");
+const icon = hamburger.querySelector("i");
 
 hamburger.addEventListener("click", () => {
-
   menu.classList.toggle("active");
 
-  hamburgerIcon.classList.toggle("fa-bars");
-  hamburgerIcon.classList.toggle("fa-xmark");
-
+  if (menu.classList.contains("active")) {
+    icon.classList.remove("fa-bars");
+    icon.classList.add("fa-xmark");
+  } else {
+    icon.classList.remove("fa-xmark");
+    icon.classList.add("fa-bars");
+  }
 });
 
-// CLOSE MENU ON CLICK
-
-document.querySelectorAll(".menu a").forEach(link => {
-
-  link.addEventListener("click", () => {
-
-    menu.classList.remove("active");
-
-    hamburgerIcon.classList.add("fa-bars");
-    hamburgerIcon.classList.remove("fa-xmark");
-
-  });
-
-});
 
 // FAQ ACCORDION
 
