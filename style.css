@@ -684,6 +684,9 @@ footer{
     gap:12px;
     animation-duration:18s;
   }
+  .cards{
+    margin-top:0px;
+  }
 }
 
 /* Small Phones */
