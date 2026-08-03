@@ -19,3 +19,14 @@ faqBoxes.forEach((box) => {
   });
 
 });
+
+const menuToggle = document.querySelector(".menu-toggle");
+const navigation = document.querySelector(".primary-navigation");
+
+menuToggle.addEventListener("click", () => {
+  menuToggle.classList.toggle("active");
+  navigation.classList.toggle("active");
+
+  const expanded = menuToggle.getAttribute("aria-expanded") === "true";
+  menuToggle.setAttribute("aria-expanded", !expanded);
+});
