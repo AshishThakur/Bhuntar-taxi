@@ -109,3 +109,54 @@ if (fine && !reduce) {
     b.addEventListener("mouseleave", () => (b.style.transform = ""));
   });
 }
+/* Right click & inspect protection */
+(() => {
+  const msg = "You cannot inspect the code of this website";
+  const toast = document.createElement("div");
+  toast.textContent = msg;
+  toast.setAttribute("role", "alert");
+  Object.assign(toast.style, {
+    position: "fixed", left: "50%", bottom: "90px",
+    transform: "translate(-50%, 20px)",
+    background: "#0f0f10", color: "#ffc400",
+    padding: "14px 24px", borderRadius: "50px",
+    border: "1px solid #ffc400",
+    font: "700 14px Manrope, sans-serif",
+    boxShadow: "0 14px 40px rgba(0,0,0,.35)",
+    textAlign: "center", maxWidth: "calc(100% - 32px)",
+    opacity: "0", pointerEvents: "none", zIndex: "2000",
+    transition: "opacity .3s, transform .3s",
+  });
+  document.body.appendChild(toast);
+
+  let timer;
+  const warn = () => {
+    toast.style.opacity = "1";
+    toast.style.transform = "translate(-50%, 0)";
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      toast.style.opacity = "0";
+      toast.style.transform = "translate(-50%, 20px)";
+    }, 2500);
+  };
+
+  // Right click band
+  document.addEventListener("contextmenu", (e) => {
+    e.preventDefault();
+    warn();
+  });
+
+  // F12, Ctrl+Shift+I/J/C, Ctrl+U (Mac: Cmd+Option+I/J/C/U)
+  document.addEventListener("keydown", (e) => {
+    const k = e.key.toLowerCase();
+    const blocked =
+      e.key === "F12" ||
+      (e.ctrlKey && e.shiftKey && ["i", "j", "c"].includes(k)) ||
+      (e.ctrlKey && k === "u") ||
+      (e.metaKey && e.altKey && ["i", "j", "c", "u"].includes(k));
+    if (blocked) {
+      e.preventDefault();
+      warn();
+    }
+  });
+})();
