@@ -302,3 +302,90 @@ if (fine && !reduce) {
     }
   });
 })();
+/* =========================================================
+   HERO CAR SLIDER
+   ========================================================= */
+(() => {
+  const slider = document.querySelector(".car-slider");
+  if (!slider) return;
+
+  const stage = slider.querySelector(".car-stage");
+  const slides = [...slider.querySelectorAll(".car-slide")];
+  const nameEl = slider.querySelector(".car-name");
+  const dotsBox = slider.querySelector(".car-dots");
+  const prevBtn = slider.querySelector(".car-prev");
+  const nextBtn = slider.querySelector(".car-next");
+  const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let current = 0;
+
+  /* image na mile to file ka naam wala box dikhao */
+  slides.forEach((slide) => {
+    const img = slide.querySelector("img");
+    const fail = () => {
+      slide.dataset.file = "Car image: " + img.getAttribute("src");
+      slide.classList.add("no-img");
+    };
+    img.addEventListener("error", fail);
+    if (img.complete && !img.naturalWidth && img.loading !== "lazy") fail();
+  });
+
+  /* dots apne aap slides ke hisaab se bante hain */
+  const dots = slides.map((slide, i) => {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = "car-dot";
+    dot.setAttribute("aria-label", "Show " + slide.dataset.name);
+    dot.addEventListener("click", () => show(i));
+    dotsBox.appendChild(dot);
+    return dot;
+  });
+
+  function show(index) {
+    const next = (index + slides.length) % slides.length;
+    slides.forEach((s, i) => {
+      s.classList.toggle("is-prev", i === current && i !== next);
+      s.classList.toggle("is-active", i === next);
+    });
+    dots.forEach((d, i) => d.classList.toggle("is-active", i === next));
+    current = next;
+    nameEl.textContent = slides[current].dataset.name;
+  }
+
+  prevBtn.addEventListener("click", () => show(current - 1));
+  nextBtn.addEventListener("click", () => show(current + 1));
+
+  /* autoplay: dot ki progress bhar jaye to agli car */
+  if (!calm && slides.length > 1) {
+    slider.classList.add("auto");
+    dotsBox.addEventListener("animationend", () => show(current + 1));
+  }
+
+  /* mouse upar ho ya tab chhupa ho to ruk jaye */
+  let hover = false;
+  const sync = () => slider.classList.toggle("paused", hover || document.hidden);
+  slider.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") { hover = true; sync(); } });
+  slider.addEventListener("pointerleave", () => { hover = false; sync(); });
+  document.addEventListener("visibilitychange", sync);
+
+  /* swipe / drag */
+  let startX = null;
+  stage.addEventListener("pointerdown", (e) => { startX = e.clientX; stage.setPointerCapture(e.pointerId); });
+  stage.addEventListener("pointerup", (e) => {
+    if (startX === null) return;
+    const move = e.clientX - startX;
+    if (Math.abs(move) > 45) show(current + (move < 0 ? 1 : -1));
+    startX = null;
+  });
+  stage.addEventListener("pointercancel", () => (startX = null));
+
+  /* keyboard arrows */
+  slider.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") show(current - 1);
+    if (e.key === "ArrowRight") show(current + 1);
+  });
+
+  /* ek hi car ho to controls ki zaroorat nahi */
+  if (slides.length < 2) { prevBtn.hidden = nextBtn.hidden = dotsBox.hidden = true; }
+
+  show(0);
+})();
