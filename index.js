@@ -109,6 +109,127 @@ if (fine && !reduce) {
     b.addEventListener("mouseleave", () => (b.style.transform = ""));
   });
 }
+
+/* =========================================================
+   GSAP: hero intro + scroll motion
+   (GSAP load na ho ya reduced-motion ho to sab normal dikhega)
+   ========================================================= */
+(() => {
+  const root = document.documentElement;
+  if (!window.gsap || reduce) { root.classList.remove("gsap-on"); return; }
+
+  const hasST = !!window.ScrollTrigger;
+  if (hasST) gsap.registerPlugin(ScrollTrigger);
+
+  const hero = $(".hero"), h1 = $(".hero h1"), glow = $(".hero-glow"), spinSvg = $(".hero-spin svg");
+
+  /* headline ko words me todo (har word ek mask ke andar) */
+  const splitWords = (node) => {
+    [...node.childNodes].forEach((n) => {
+      if (n.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach((p) => {
+          if (!p) return;
+          if (/^\s+$/.test(p)) { frag.appendChild(document.createTextNode(" ")); return; }
+          const mask = document.createElement("span"); mask.className = "sw";
+          const inner = document.createElement("span"); inner.className = "sw-i";
+          inner.textContent = p; mask.appendChild(inner); frag.appendChild(mask);
+        });
+        n.replaceWith(frag);
+      } else if (n.nodeType === 1) splitWords(n);
+    });
+  };
+  splitWords(h1);
+  const words = $$(".sw-i", h1);
+
+  gsap.set(h1, { autoAlpha: 1 });
+  gsap.set(".hc-list li", { autoAlpha: 0 });
+
+  /* ---------- Page load intro ---------- */
+  const intro = gsap.timeline({
+    defaults: { ease: "power3.out" },
+    onComplete() {
+      gsap.set([".header-call", ".hero-buttons > *", ".hc-call"], { clearProps: "transform" });
+      root.classList.remove("gsap-on");
+    }
+  });
+
+  intro
+    .fromTo(".hero-bg", { scale: 1.3 }, { scale: 1.08, duration: 2.8, ease: "expo.out" }, 0)
+    .fromTo([".site-header .logo", ".primary-navigation li", ".header-call", ".menu-toggle"],
+      { autoAlpha: 0, y: -28 }, { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.07 }, 0.1)
+    .fromTo(".hero-badge", { autoAlpha: 0, y: 24, scale: 0.9 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.8 }, 0.3)
+    .fromTo(words, { yPercent: 118, skewY: 6 }, { yPercent: 0, skewY: 0, duration: 1.15, stagger: 0.07, ease: "power4.out" }, 0.4)
+    .fromTo(".hero-description", { autoAlpha: 0, y: 26 }, { autoAlpha: 1, y: 0, duration: 0.9 }, 0.85)
+    .fromTo(".hero-buttons > *", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.12 }, 1)
+    .fromTo(".hero-stats", { autoAlpha: 0, y: 40, scale: 0.95 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.9 }, 1.15)
+    .fromTo(".trust-badges", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.8 }, 1.3)
+    .fromTo(".hero-side", { autoAlpha: 0, x: 90, scale: 0.92 }, { autoAlpha: 1, x: 0, scale: 1, duration: 1.2, ease: "expo.out" }, 0.7)
+    .fromTo(".hc-list li", { autoAlpha: 0, x: 36 }, { autoAlpha: 1, x: 0, duration: 0.7, stagger: 0.1 }, 1.1)
+    .fromTo(".hero-spin", { scale: 0, rotation: -120 }, { scale: 1, rotation: 0, duration: 1, ease: "back.out(1.6)" }, 1.3);
+
+  /* safety: kuch atak jaye to 5 sec baad final state par le aao */
+  setTimeout(() => { if (intro.progress() < 1) intro.progress(1); }, 5000);
+
+  /* ---------- Loop animations ---------- */
+  gsap.to(".hero-card", { y: -10, duration: 3.2, yoyo: true, repeat: -1, ease: "sine.inOut", delay: 2 });
+  const spin = gsap.to(spinSvg, { rotation: 360, duration: 16, repeat: -1, ease: "none" });
+
+  /* ---------- Mouse glow (sirf mouse wale device par) ---------- */
+  if (fine) {
+    gsap.set(glow, { x: hero.offsetWidth * 0.7, y: hero.offsetHeight * 0.4 });
+    const gx = gsap.quickTo(glow, "x", { duration: 0.8, ease: "power3" });
+    const gy = gsap.quickTo(glow, "y", { duration: 0.8, ease: "power3" });
+    hero.addEventListener("mouseenter", () => gsap.to(glow, { opacity: 1, duration: 0.6 }));
+    hero.addEventListener("mouseleave", () => gsap.to(glow, { opacity: 0, duration: 0.6 }));
+    hero.addEventListener("mousemove", (e) => {
+      const r = hero.getBoundingClientRect();
+      gx(e.clientX - r.left); gy(e.clientY - r.top);
+    });
+  }
+
+  /* ---------- Scroll motion ---------- */
+  if (hasST) {
+    /* hero background parallax */
+    gsap.to(".hero-bg", {
+      y: () => hero.offsetHeight * 0.18, ease: "none",
+      scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true, invalidateOnRefresh: true }
+    });
+    /* hero content halka upar jaakar fade */
+    gsap.to(".hero-content", {
+      y: -70, opacity: 0.15, ease: "none",
+      scrollTrigger: { trigger: hero, start: "top top", end: "bottom 20%", scrub: true }
+    });
+    gsap.to(".hero-side", {
+      y: -40, ease: "none",
+      scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true }
+    });
+
+    /* scroll speed ke hisaab se marquee skew + badge ki speed */
+    const marqueeItems = gsap.utils.toArray(".marquee span");
+    const setSkew = gsap.quickSetter(marqueeItems, "skewX", "deg");
+    const vel = { v: 0 };
+    ScrollTrigger.create({
+      onUpdate(self) {
+        const target = gsap.utils.clamp(-10, 10, self.getVelocity() / -200);
+        if (Math.abs(target) > Math.abs(vel.v)) {
+          vel.v = target;
+          gsap.to(vel, {
+            v: 0, duration: 0.9, ease: "power3.out", overwrite: true,
+            onUpdate() { setSkew(vel.v); spin.timeScale(1 + Math.abs(vel.v) * 1.2); }
+          });
+        }
+      }
+    });
+
+    /* CTA section parallax */
+    gsap.fromTo(".cta-content", { y: 60 }, {
+      y: -30, ease: "none",
+      scrollTrigger: { trigger: ".cta-section", start: "top bottom", end: "bottom top", scrub: true }
+    });
+  }
+})();
+
 /* Right click & inspect protection (punch popup) */
 (() => {
   const msg = "Oops! This road is closed. Enjoy the ride on our website instead. 🚕";
