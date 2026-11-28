@@ -11,6 +11,9 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <link rel="canonical" href="https://ashishthakur.github.io/Bhuntar-taxi/" />
 
+    <!-- GSAP: hero hide hone se pehle flash rokne ke liye (JS ya GSAP na chale to ye class hat jati hai) -->
+    <script>document.documentElement.classList.add("gsap-on");</script>
+
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_IN" />
@@ -129,24 +132,51 @@
       <section id="home" class="hero">
         <div class="hero-bg"></div>
         <div class="hero-overlay"></div>
+        <div class="hero-glow" aria-hidden="true"></div>
         <div class="container">
-          <div class="hero-content">
-            <div class="hero-badge"><span class="status-dot"></span>Available 24/7 in Kullu Valley</div>
-            <h1>Reliable <span>Bhuntar Taxi Service</span> for Kullu Valley</h1>
-            <p class="hero-description">Comfortable taxi from <strong>Bhuntar &amp; Kullu Airport</strong> to Manali, Kasol, Manikaran, Jibhi, Tirthan Valley and all of Himachal Pradesh.</p>
-            <div class="hero-buttons">
-              <a href="tel:+917876653693" class="primary-btn magnetic"><i class="fa-solid fa-phone"></i>Book Your Taxi</a>
-              <a href="https://wa.me/917876653693?text=Hello%20Bhuntar%20Taxi%20Service,%20I%20want%20to%20book%20a%20taxi." class="secondary-btn magnetic" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i>WhatsApp Us</a>
+          <div class="hero-grid">
+            <div class="hero-content">
+              <div class="hero-badge"><span class="status-dot"></span>Available 24/7 in Kullu Valley</div>
+              <h1>Reliable <span>Bhuntar Taxi Service</span> for Kullu Valley</h1>
+              <p class="hero-description">Comfortable taxi from <strong>Bhuntar &amp; Kullu Airport</strong> to Manali, Kasol, Manikaran, Jibhi, Tirthan Valley and all of Himachal Pradesh.</p>
+              <div class="hero-buttons">
+                <a href="tel:+917876653693" class="primary-btn magnetic"><i class="fa-solid fa-phone"></i>Book Your Taxi</a>
+                <a href="https://wa.me/917876653693?text=Hello%20Bhuntar%20Taxi%20Service,%20I%20want%20to%20book%20a%20taxi." class="secondary-btn magnetic" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i>WhatsApp Us</a>
+              </div>
+              <div class="hero-stats">
+                <div class="stat-box"><strong><span class="count" data-target="500">0</span><span class="suffix">+</span></strong><span class="stat-label">Happy Customers</span></div>
+                <div class="stat-box"><strong><span class="count" data-target="24">0</span><span class="suffix">/7</span></strong><span class="stat-label">Availability</span></div>
+                <div class="stat-box"><strong><span class="typed" data-text="Local">Local</span></strong><span class="stat-label">Experienced Drivers</span></div>
+              </div>
+              <div class="trust-badges">
+                <span><i class="fa-solid fa-shield-halved"></i>Safe Drivers</span>
+                <span><i class="fa-solid fa-car-side"></i>Clean Vehicles</span>
+                <span><i class="fa-solid fa-clock"></i>Quick Pickup</span>
+              </div>
             </div>
-            <div class="hero-stats">
-              <div class="stat-box"><strong><span class="count" data-target="500">0</span><span class="suffix">+</span></strong><span class="stat-label">Happy Customers</span></div>
-              <div class="stat-box"><strong><span class="count" data-target="24">0</span><span class="suffix">/7</span></strong><span class="stat-label">Availability</span></div>
-              <div class="stat-box"><strong><span class="typed" data-text="Local">Local</span></strong><span class="stat-label">Experienced Drivers</span></div>
-            </div>
-            <div class="trust-badges">
-              <span><i class="fa-solid fa-shield-halved"></i>Safe Drivers</span>
-              <span><i class="fa-solid fa-car-side"></i>Clean Vehicles</span>
-              <span><i class="fa-solid fa-clock"></i>Quick Pickup</span>
+
+            <div class="hero-side">
+              <div class="hero-spin" aria-hidden="true">
+                <svg viewBox="0 0 200 200">
+                  <defs><path id="spin-circle" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" /></defs>
+                  <text><textPath href="#spin-circle" textLength="488" lengthAdjust="spacing">BHUNTAR TAXI • KULLU VALLEY • 24/7 SERVICE • </textPath></text>
+                </svg>
+                <span class="hero-spin-icon"><i class="fa-solid fa-taxi"></i></span>
+              </div>
+              <aside class="hero-card" aria-label="Popular taxi routes">
+                <div class="hc-top">
+                  <span class="hc-live"><span class="status-dot"></span>Available 24/7</span>
+                  <i class="fa-solid fa-taxi"></i>
+                </div>
+                <p class="hc-title">Popular routes</p>
+                <ul class="hc-list">
+                  <li><a href="https://wa.me/917876653693?text=Hello%20Bhuntar%20Taxi%20Service,%20I%20need%20a%20taxi%20from%20Bhuntar%20to%20Manali." target="_blank" rel="noopener noreferrer"><span class="hc-ico"><i class="fa-solid fa-mountain"></i></span><span class="hc-route"><strong>Bhuntar → Manali</strong><small>Book on WhatsApp</small></span><i class="fa-solid fa-arrow-right"></i></a></li>
+                  <li><a href="https://wa.me/917876653693?text=Hello%20Bhuntar%20Taxi%20Service,%20I%20need%20a%20taxi%20from%20Bhuntar%20to%20Kasol." target="_blank" rel="noopener noreferrer"><span class="hc-ico"><i class="fa-solid fa-location-dot"></i></span><span class="hc-route"><strong>Airport → Kasol</strong><small>Book on WhatsApp</small></span><i class="fa-solid fa-arrow-right"></i></a></li>
+                  <li><a href="https://wa.me/917876653693?text=Hello%20Bhuntar%20Taxi%20Service,%20I%20need%20a%20taxi%20from%20Kullu%20to%20Manikaran." target="_blank" rel="noopener noreferrer"><span class="hc-ico"><i class="fa-solid fa-route"></i></span><span class="hc-route"><strong>Kullu → Manikaran</strong><small>Book on WhatsApp</small></span><i class="fa-solid fa-arrow-right"></i></a></li>
+                  <li><a href="https://wa.me/917876653693?text=Hello%20Bhuntar%20Taxi%20Service,%20I%20need%20a%20taxi%20from%20Bhuntar%20to%20Jibhi." target="_blank" rel="noopener noreferrer"><span class="hc-ico"><i class="fa-solid fa-tree"></i></span><span class="hc-route"><strong>Bhuntar → Jibhi</strong><small>Book on WhatsApp</small></span><i class="fa-solid fa-arrow-right"></i></a></li>
+                </ul>
+                <a href="tel:+917018385601" class="hc-call magnetic"><i class="fa-solid fa-phone"></i>Call +91 7018385601</a>
+              </aside>
             </div>
           </div>
         </div>
@@ -244,6 +274,9 @@
       <a href="https://wa.me/917876653693?text=Hello,%20I%20want%20to%20book%20a%20taxi." class="floating-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
     </div>
 
+    <!-- GSAP + ScrollTrigger (index.js se pehle) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
     <script src="index.js" defer></script>
   </body>
 </html>
