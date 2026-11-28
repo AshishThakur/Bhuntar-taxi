@@ -163,9 +163,47 @@
                 </svg>
                 <span class="hero-spin-icon"><i class="fa-solid fa-taxi"></i></span>
               </div>
-              <div class="hero-car">
-                <img src="images/alto-taxi.png" alt="Maruti Alto taxi from Bhuntar Taxi Service" width="900" height="560" fetchpriority="high" onerror="this.parentNode.classList.add('no-img')" />
-              </div>
+              
+<div class="hero-car car-slider" aria-roledescription="carousel" aria-label="Our taxi cars">
+
+  <div class="car-stage">
+
+    <figure class="car-slide is-active" data-name="Maruti Alto K10">
+      <img
+        src="images/White Suzuki Alto K10 Cutout.png"
+        alt="Maruti Suzuki Alto K10 taxi from Bhuntar Taxi Service"
+        draggable="false"
+      />
+    </figure>
+
+    <figure class="car-slide" data-name="Toyota Innova Crysta">
+      <img
+        src="images/Toyota Innova Crysta Studio Cutout.png"
+        alt="Toyota Innova Crysta taxi from Bhuntar Taxi Service"
+        draggable="false"
+        loading="lazy"
+      />
+    </figure>
+
+  </div>
+
+  <div class="car-bar">
+    <button class="car-btn car-prev" type="button" aria-label="Previous car">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+
+    <div class="car-info">
+      <strong class="car-name" aria-live="polite">Maruti Alto K10</strong>
+      <div class="car-dots"></div>
+    </div>
+
+    <button class="car-btn car-next" type="button" aria-label="Next car">
+      <i class="fa-solid fa-arrow-right"></i>
+    </button>
+  </div>
+
+</div>
+
             </div>
 
             <aside class="hero-card" aria-label="Popular taxi routes">
